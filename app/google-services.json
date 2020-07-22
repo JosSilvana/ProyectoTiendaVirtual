@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "350588867394",
+    "firebase_url": "https://tiendamovil-80177.firebaseio.com",
+    "project_id": "tiendamovil-80177",
+    "storage_bucket": "tiendamovil-80177.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350588867394:android:0eeb6e8613fee8fb7deedb",
+        "android_client_info": {
+          "package_name": "com.uisrael"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350588867394-7ihrpp81ev3u56rubhlg6sdlus0alf0g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uisrael",
+            "certificate_hash": "0ce2e6471a8e4aa633cd89da22435fb8350250bc"
+          }
+        },
+        {
+          "client_id": "350588867394-knu4nof5pco92td36tuaji6e2v3f834i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcsWAxjSSG_2UFnVGGWd3xPgaYFJ3tr9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350588867394-knu4nof5pco92td36tuaji6e2v3f834i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
