@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_menu"
+        android:title="menu"
+        android:id="@+id/menu"
+        app:showAsAction="always"
+        >
+        <menu>
+            <item
+                android:icon="@drawable/ic_person"
+                android:title="usuario"
+                android:id="@+id/usuario"
+                app:showAsAction="always"
+                />
+            <item
+                android:icon="@drawable/ic_lens_black"
+                android:title="productos"
+                android:id="@+id/productos"
+                app:showAsAction="always"
+                />
+            <item
+                android:icon="@drawable/ic_shopping_cart"
+                android:title="carrito"
+                android:id="@+id/carrito"
+                app:showAsAction="always"
+                />
+            <item
+                android:icon="@drawable/ic_session"
+                android:title="cerrar sesion"
+                android:id="@+id/cerrarSesion"
+                app:showAsAction="always"
+                />
+        </menu>
+    </item>
+</menu>

@@ -5,7 +5,7 @@
     <string name="contraseña">Contraseña</string>
     <string name="btn_google">Iniciar sesión con Google</string>
     <string name="pregunta">No tienes una cuenta ?</string>
-    <string name="registrar">Registrate </string>
+    <string name="registrar">Regístrate </string>
     <string name="nombre">Nombre</string>
     <string name="apellido">Apellido</string>
     <string name="r_contraseña">Repetir contraseña</string>
@@ -17,5 +17,17 @@
     <string name="not_close_session">No se pudo cerrar sesión</string>
     <string name="not_revoke">No se pudo revocar el acceso</string>
     <string name="not_firebase_auth">No se pudo autenticar con Firebase</string>
+    <string name="bienvenido">Bienvenid@:</string>
+    <string name="btnAñadir">Añadir</string>
+    <string name="Total">Total: $</string>
+    <string name="listaCarrito">Lista de productos</string>
+    <string name="btnComprar">Comprar</string>
+    <string name="seleccionar">Seleccionar Imagen</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="actualizarContraseña">Actualizar Contraseña</string>
+    <string name="ingreseContrasenia">Ingrese su Contraseña</string>
+    <string name="ingreseNuevaContrasenia">Ingrese su  Nueva Contraseña</string>
+    <string name="verifiqueNContrasenia">Verifique su Nueva Contraseña</string>
+    <string name="email">Email</string>
 
 </resources>
