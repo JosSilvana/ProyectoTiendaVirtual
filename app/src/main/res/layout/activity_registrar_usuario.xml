@@ -126,6 +126,7 @@
         android:layout_marginBottom="42dp"
         android:onClick="VentanaLogin"
         android:text="@string/vetana_nombre"
+        android:textColor="#FFC107"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView13"

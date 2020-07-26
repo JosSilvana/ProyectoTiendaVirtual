@@ -32,7 +32,7 @@ public class ListarProductos extends AppCompatActivity {
     Bundle datoRes;
     private Toolbar toolbar;
     ListView listaProductos;
-    String RecibirIdUsuario, idProducto;
+    String RecibirIdUsuario, RecibirNombre, RecibirApellido, RecibirEmail;
     private List<Productos> listaP = new ArrayList<>();
     private ListAdapter listaProductosAdapter;
 
@@ -42,10 +42,13 @@ public class ListarProductos extends AppCompatActivity {
         setContentView(R.layout.activity_listar_productos);
 
         toolbar = findViewById(R.id.tool);
-        setTitle("");
+        setTitle("Lista Productos");
         setSupportActionBar(toolbar);
         datoRes=getIntent().getExtras();
         RecibirIdUsuario=datoRes.getString("idUsuario");
+        RecibirNombre=datoRes.getString("nombre");
+        RecibirApellido=datoRes.getString("apellido");
+        RecibirEmail=datoRes.getString("email");
 
         listaProductos = findViewById(R.id.ListP);
         getData();
@@ -53,14 +56,17 @@ public class ListarProductos extends AppCompatActivity {
         listaProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(listaProductos.getContext(), listaP.get(position),Toast.LENGTH_SHORT).show();
                 Intent irDetalle = new Intent(listaProductos.getContext(), DetalleProducto.class);
                 irDetalle.putExtra("idUsuario",RecibirIdUsuario);
                 irDetalle.putExtra("idProducto",listaP.get(position).getIdProducto());
-                irDetalle.putExtra("nombre", listaP.get(position).getNombre());
+                irDetalle.putExtra("nombreP", listaP.get(position).getNombre());
                 irDetalle.putExtra("descripcion", listaP.get(position).getDescripcion());
                 irDetalle.putExtra("cantidad", listaP.get(position).getCantidad());
                 irDetalle.putExtra("precio",listaP.get(position).getPrecio());
+                irDetalle.putExtra("idUsuario", RecibirIdUsuario);
+                irDetalle.putExtra("nombre", RecibirNombre);
+                irDetalle.putExtra("apellido", RecibirApellido);
+                irDetalle.putExtra("email", RecibirEmail);
                 startActivity(irDetalle);
             }
         });
@@ -115,24 +121,41 @@ public class ListarProductos extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch (menuItem.getItemId()){
+            case R.id.inicio:
+                Intent irInicio = new Intent(this, Inicio.class);
+                irInicio.putExtra("idUsuario", RecibirIdUsuario);
+                irInicio.putExtra("nombre", RecibirNombre);
+                irInicio.putExtra("apellido", RecibirApellido);
+                irInicio.putExtra("email", RecibirEmail);
+                startActivity(irInicio);
+                break;
             case R.id.usuario:
                 Intent irPerfil = new Intent(this, PerfilUsuario.class);
                 irPerfil.putExtra("idUsuario", RecibirIdUsuario);
+                irPerfil.putExtra("nombre", RecibirNombre);
+                irPerfil.putExtra("apellido", RecibirApellido);
+                irPerfil.putExtra("email", RecibirEmail);
                 startActivity(irPerfil);
                 break;
             case R.id.productos:
                 Intent irProductos = new Intent(this, ListarProductos.class);
                 irProductos.putExtra("idUsuario", RecibirIdUsuario);
+                irProductos.putExtra("nombre", RecibirNombre);
+                irProductos.putExtra("apellido", RecibirApellido);
+                irProductos.putExtra("email", RecibirEmail);
                 startActivity(irProductos);
                 break;
             case R.id.carrito:
                 Intent irCarrito = new Intent(this, CarritoCompras.class);
                 irCarrito.putExtra("idUsuario", RecibirIdUsuario);
+                irCarrito.putExtra("nombre", RecibirNombre);
+                irCarrito.putExtra("apellido", RecibirApellido);
+                irCarrito.putExtra("email", RecibirEmail);
                 startActivity(irCarrito);
                 break;
             case R.id.cerrarSesion:
-                Intent irInicio = new Intent(this, IniciarSesion.class);
-                startActivity(irInicio);
+                Intent irLogin = new Intent(this, IniciarSesion.class);
+                startActivity(irLogin);
                 break;
         }
         return true;

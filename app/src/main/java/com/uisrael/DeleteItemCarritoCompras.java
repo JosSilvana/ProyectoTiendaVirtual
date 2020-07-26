@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -20,36 +19,23 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
-public class PostAgregarProductosCarrito extends AsyncTask<Void, Void, String> {
+public class DeleteItemCarritoCompras extends AsyncTask<Void, Void, String> {
+
+
     private Context httpContext;//contexto
     ProgressDialog progressDialog;//dialogo cargando
-    private String resultadoapi="";
     private String linkrequestAPI="";//link  para consumir el servicio rest
-    private String idUsuario="";
-    private String idProducto="";
-    private String nombreProducto="";
-    private String cantidad="";
-    private String cantidadTotal;
-    private String total="";
-
-    public PostAgregarProductosCarrito(Context ctx, String linkAPI, String idUsuario, String idProducto, String  nombreProducto, String cantidad, String cantidadTotal, String total){
+    public DeleteItemCarritoCompras(Context ctx, String linkAPI ){
         this.httpContext=ctx;
         this.linkrequestAPI=linkAPI;
-        this.idUsuario = idUsuario;
-        this.idProducto = idProducto;
-        this.nombreProducto=nombreProducto;
-        this.cantidad=cantidad;
-        this.cantidadTotal = cantidadTotal;
-        this.total=total;
     }
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = ProgressDialog.show(httpContext, "Procesando Solicitud", "por favor, espere");
     }
-
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(Void... voids) {
         //Declaracion de variables
         String result= null;
         String wsURL = linkrequestAPI;//webservice
@@ -58,34 +44,21 @@ public class PostAgregarProductosCarrito extends AsyncTask<Void, Void, String> {
             // se crea la conexion al api:
             url = new URL(wsURL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            //crear el objeto json para enviar por POST
-            JSONObject parametrosPost= new JSONObject();
-            parametrosPost.put("idUsuario", idUsuario);
-            parametrosPost.put("idProducto", idProducto);
-            parametrosPost.put("nombreProducto",nombreProducto);
-            parametrosPost.put("cantidad",cantidad);
-            parametrosPost.put("cantidadTotal", cantidadTotal);
-            parametrosPost.put("total",total);
-
             //DEFINIR PARAMETROS DE CONEXION
             urlConnection.setReadTimeout(15000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("POST");// se puede cambiar por delete ,put ,etc
+            urlConnection.setRequestMethod("DELETE");// se puede cambiar por delete ,put ,etc
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);//insert into WS
-
             //OBTENER EL RESULTADO DEL REQUEST
             OutputStream os = urlConnection.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));//UTF-8
-            writer.write(getPostDataString(parametrosPost));
             writer.flush(); // UTF8-
             writer.close();//
             os.close();//CONEXION
-
             int responseCode=urlConnection.getResponseCode();// conexion OK?
             if(responseCode== HttpURLConnection.HTTP_OK){//ERROR
                 BufferedReader in= new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
                 StringBuffer sb= new StringBuffer("");
                 String linea="";
                 while ((linea=in.readLine())!= null){
@@ -103,42 +76,15 @@ public class PostAgregarProductosCarrito extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  result;
+        return result;
     }
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         progressDialog.dismiss();
-        resultadoapi=s;
-        Toast.makeText(httpContext,"El producto se añadio al carrito de compras",Toast.LENGTH_SHORT).show();//mostrara una notificacion con el resultado del request
-    }
-    //FUNCIONES----------------------------------------------------------------------
-    //Transformar JSON Obejct a String *******************************************
-    public String getPostDataString(JSONObject params) throws Exception {
-
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        Iterator<String> itr = params.keys();
-        while(itr.hasNext()){//HOLA
-
-            String key= itr.next();
-            Object value = params.get(key);
-
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(key, "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-        }
-        return result.toString();
     }
 
 }

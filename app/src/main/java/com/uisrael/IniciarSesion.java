@@ -11,18 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.GoogleAuthProvider;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +31,7 @@ public class IniciarSesion extends AppCompatActivity {
     private static final String AES ="AES";
     private String usuario, contraseña, user, password, nombre , apellido, id;
     String passwordEncriptacion = "gdsawr";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +131,6 @@ public class IniciarSesion extends AppCompatActivity {
         } catch (JSONException e) {
             Toast.makeText(getApplicationContext(), "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
     }
+
 }

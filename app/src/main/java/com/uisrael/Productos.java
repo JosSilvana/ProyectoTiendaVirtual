@@ -19,7 +19,6 @@ public class Productos  {
     private String precio;
     private String cantidad;
     private String imagen;
-    //private byte []
 
     public Productos(String idProducto,String nombre, String descripcion, String precio, String cantidad, String imagen) {
         this.idProducto = idProducto;

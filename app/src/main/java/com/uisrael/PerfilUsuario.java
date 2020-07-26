@@ -72,7 +72,7 @@ public class PerfilUsuario extends AppCompatActivity {
         apellido.setText(RecibirApellido);
         email.setText(RecibirEmail);
         toolbar = findViewById(R.id.tool);
-        setTitle("");
+        setTitle("Perfil de Usuario");
         setSupportActionBar(toolbar);
         datoRes=getIntent().getExtras();
         RecibirIdUsuario=datoRes.getString("idUsuario");
@@ -89,6 +89,8 @@ public class PerfilUsuario extends AppCompatActivity {
         Intent intentEnvio = new Intent(this, ActualizarContrasenia.class);
         intentEnvio.putExtra("email", RecibirEmail);
         intentEnvio.putExtra("idUsuario", RecibirIdUsuario);
+        intentEnvio.putExtra("nombre", RecibirNombre);
+        intentEnvio.putExtra("apellido", RecibirApellido);
         startActivity(intentEnvio);
     }
     public void tomarFoto(View v) {
@@ -213,24 +215,41 @@ public class PerfilUsuario extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch (menuItem.getItemId()){
+            case R.id.inicio:
+                Intent irInicio = new Intent(this, Inicio.class);
+                irInicio.putExtra("idUsuario", RecibirIdUsuario);
+                irInicio.putExtra("nombre", RecibirNombre);
+                irInicio.putExtra("apellido", RecibirApellido);
+                irInicio.putExtra("email", RecibirEmail);
+                startActivity(irInicio);
+                break;
             case R.id.usuario:
                 Intent irPerfil = new Intent(this, PerfilUsuario.class);
                 irPerfil.putExtra("idUsuario", RecibirIdUsuario);
+                irPerfil.putExtra("nombre", RecibirNombre);
+                irPerfil.putExtra("apellido", RecibirApellido);
+                irPerfil.putExtra("email", RecibirEmail);
                 startActivity(irPerfil);
                 break;
             case R.id.productos:
                 Intent irProductos = new Intent(this, ListarProductos.class);
                 irProductos.putExtra("idUsuario", RecibirIdUsuario);
+                irProductos.putExtra("nombre", RecibirNombre);
+                irProductos.putExtra("apellido", RecibirApellido);
+                irProductos.putExtra("email", RecibirEmail);
                 startActivity(irProductos);
                 break;
             case R.id.carrito:
                 Intent irCarrito = new Intent(this, CarritoCompras.class);
                 irCarrito.putExtra("idUsuario", RecibirIdUsuario);
+                irCarrito.putExtra("nombre", RecibirNombre);
+                irCarrito.putExtra("apellido", RecibirApellido);
+                irCarrito.putExtra("email", RecibirEmail);
                 startActivity(irCarrito);
                 break;
             case R.id.cerrarSesion:
-                Intent irInicio = new Intent(this, IniciarSesion.class);
-                startActivity(irInicio);
+                Intent irLogin = new Intent(this, IniciarSesion.class);
+                startActivity(irLogin);
                 break;
         }
         return true;

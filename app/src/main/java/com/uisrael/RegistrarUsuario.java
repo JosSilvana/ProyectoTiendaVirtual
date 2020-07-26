@@ -28,6 +28,7 @@ public class RegistrarUsuario extends AppCompatActivity {
     EditText etNombres, etApellidos, etContraseña, etRContraseña, etCorreo;
     String passwordEncriptacion = "gdsawr";
     String emailUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,6 @@ public class RegistrarUsuario extends AppCompatActivity {
         etCorreo= findViewById(R.id.etEmail);
         etContraseña = findViewById(R.id.etContrasenia);
         etRContraseña = findViewById(R.id.etRcontrasenia);
-
     }
     public boolean verificarContraseña(String contraseña, String rcontraseña) {
         if(contraseña.equals(rcontraseña)==true){
@@ -155,5 +155,4 @@ public class RegistrarUsuario extends AppCompatActivity {
         }
         return  valor;
     }
-
 }

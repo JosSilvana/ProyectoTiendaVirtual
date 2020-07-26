@@ -1,11 +1,14 @@
 package com.uisrael;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +30,8 @@ import javax.crypto.spec.SecretKeySpec;
 public class ActualizarContrasenia extends AppCompatActivity {
 
     Bundle datoRes;
-    String RecibirEmail, RecibirId;
+    private Toolbar toolbar;
+    String RecibirEmail, RecibirId, RecibirNombre, RecibirApellido;
     EditText etContraseñaUser, etNuevaContraseñaUser, etConfirmarContraseñaUser;
     private String  contrasenaUser, idUser;
     String passwordEncriptacion = "gdsawr";
@@ -35,14 +39,18 @@ public class ActualizarContrasenia extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_contrasenia);
+        toolbar = findViewById(R.id.tool);
+        setTitle("Actualizar Contraseña");
+        setSupportActionBar(toolbar);
         datoRes=getIntent().getExtras();
         RecibirEmail= datoRes.getString("email");
         RecibirId= datoRes.getString("idUsuario");
+        RecibirNombre=datoRes.getString("nombre");
+        RecibirApellido=datoRes.getString("apellido");
         etContraseñaUser= findViewById(R.id.etContraseña);
         etNuevaContraseñaUser= findViewById(R.id.etNuevaContrasenia);
         etConfirmarContraseñaUser= findViewById(R.id.etNuevaContraseniaC);
     }
-
     public void obtenerDatos() throws Exception {
         String contraseña = etContraseñaUser.getText().toString().trim();
         String ncontraseña = etNuevaContraseñaUser.getText().toString().trim();
@@ -85,7 +93,6 @@ public class ActualizarContrasenia extends AppCompatActivity {
             }
         }
     }
-
     public void VerificarCrendenciales(String contraseña, String contraseñaUser,String nuevaContraseña) throws Exception {
         if(contraseña.equals(contraseñaUser)==true ){
             int id = Integer.parseInt(RecibirId);
@@ -99,7 +106,6 @@ public class ActualizarContrasenia extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"¡La contraseña indicada no coincide con los registros!", Toast.LENGTH_LONG).show();
         }
     }
-
     private String encriptar(String datos, String password) throws Exception{
         SecretKeySpec secretKey = generateKey(password);
         Cipher cipher = Cipher.getInstance("AES");
@@ -124,7 +130,6 @@ public class ActualizarContrasenia extends AppCompatActivity {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         return secretKey;
     }
-
     public boolean validarCampos(String contraseña, String ncontraseña, String vcontraseña){
         boolean valor= true;
         if(contraseña.isEmpty()){
@@ -141,11 +146,9 @@ public class ActualizarContrasenia extends AppCompatActivity {
         }
         return valor;
     }
-
     public void Actualizar(View v) throws Exception {
         obtenerDatos();
     }
-
     public boolean verificarContraseña(String contraseña, String rcontraseña) {
         if(contraseña.equals(rcontraseña)==true){
             return true;
@@ -153,5 +156,50 @@ public class ActualizarContrasenia extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"¡Las contraseñas no coinciden!", Toast.LENGTH_LONG).show();
             return false;
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        switch (menuItem.getItemId()){
+            case R.id.inicio:
+                Intent irInicio = new Intent(this, Inicio.class);
+                irInicio.putExtra("idUsuario", RecibirId);
+                irInicio.putExtra("nombre", RecibirNombre);
+                irInicio.putExtra("apellido", RecibirApellido);
+                irInicio.putExtra("email", RecibirEmail);
+                startActivity(irInicio);
+                break;
+            case R.id.usuario:
+                Intent irPerfil = new Intent(this, PerfilUsuario.class);
+                irPerfil.putExtra("idUsuario", RecibirId);
+                irPerfil.putExtra("nombre", RecibirNombre);
+                irPerfil.putExtra("apellido", RecibirApellido);
+                irPerfil.putExtra("email", RecibirEmail);
+                startActivity(irPerfil);
+                break;
+            case R.id.productos:
+                Intent irProductos = new Intent(this, ListarProductos.class);
+                irProductos.putExtra("idUsuario", RecibirId);
+                irProductos.putExtra("nombre", RecibirNombre);
+                irProductos.putExtra("apellido", RecibirApellido);
+                irProductos.putExtra("email", RecibirEmail);
+                startActivity(irProductos);
+                break;
+            case R.id.carrito:
+                Intent irCarrito = new Intent(this, CarritoCompras.class);
+                irCarrito.putExtra("idUsuario", RecibirId);
+                irCarrito.putExtra("nombre", RecibirNombre);
+                irCarrito.putExtra("apellido", RecibirApellido);
+                irCarrito.putExtra("email", RecibirEmail);
+                startActivity(irCarrito);
+                break;
+            case R.id.cerrarSesion:
+                Intent irLogin = new Intent(this, IniciarSesion.class);
+                startActivity(irLogin);
+                break;
+        }
+        return true;
     }
 }

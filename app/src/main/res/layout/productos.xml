@@ -7,38 +7,76 @@
 
     <ImageView
         android:id="@+id/imgProductos"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="108dp"
+        android:layout_height="173dp"
         android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/ltvNombre"
-        android:layout_width="match_parent"
+        android:id="@+id/ltvNombre1"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/imgProductos"
-        />
+        android:text="Nombre:"
+        android:textColor="#FFC107"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/imgProductos" />
 
     <TextView
-        android:id="@+id/ltvDescripcion"
-        android:layout_width="match_parent"
+        android:id="@+id/ltvNombre"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ltvNombre1" />
+
+    <TextView
+        android:id="@+id/ltvDescripcion1"
+        android:layout_width="138dp"
+        android:layout_height="60dp"
         android:layout_toRightOf="@id/imgProductos"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
+        android:text="Descripción:"
+        android:textColor="#FFC107"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/ltvDescripcion"
+        android:layout_width="168dp"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/ltvDescripcion1"
+        android:layout_marginTop="40dp"
          />
 
     <TextView
-        android:id="@+id/ltvCantidad"
-        android:layout_width="match_parent"
+        android:id="@+id/ltvCantidad1"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/imgProductos"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
+        android:text="Cantidad:"
+        android:textColor="#FFC107"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/ltvCantidad"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ltvCantidad1"
+        android:layout_marginTop="120dp"
         />
 
     <TextView
-        android:id="@+id/ltvPrecio"
-        android:layout_width="match_parent"
+        android:id="@+id/ltvPrecio1"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/imgProductos"
+        android:layout_marginTop="150dp"
+        android:text="Precio:"
+        android:textColor="#FFC107"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/ltvPrecio"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ltvPrecio1"
         android:layout_marginTop="150dp"
         />
 </RelativeLayout>
